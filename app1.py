@@ -14,7 +14,13 @@ def predict(data):
 
     predictions = classifier.predict(vect)
     return predictions
+def predict1(data1):
 
+    vect =cv.transform(data1['v2'])
+    vect=vect.toarray()
+
+    predictions = classifier.predict(vect)
+    return predictions
 def main ():
     from PIL import Image
     image = Image.open('images.jpg')
@@ -59,13 +65,13 @@ def main ():
 
     if add_selectbox == 'Batch':
         file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"])
-
+        st.title('Make sure the csv File is in the same format  as spam.csv before uploading to avoid Error')
         if file_upload is not None:
-            data = pd.read_csv(file_upload,  encoding = 'latin-1')
+            data1 = pd.read_csv(file_upload,  encoding = 'latin-1')
 
 
-            predictions = predict(data)
-            
+            predictions = predict1(data1)
+
             st.write(predictions)
 if __name__ == '__main__':
     main()
