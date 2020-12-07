@@ -46,7 +46,7 @@ def main ():
         output = predict(data)
     if output==1:
         output='ham'
-    else:
+    if output==0:
         output='spam'
 
     st.success(' output is {}'.format(output))
