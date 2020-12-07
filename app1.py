@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import joblib
 import streamlit as st
-pickle_in = open("logit.pkl","rb")
+pickle_in = open("grid2.pkl","rb")
 classifier=joblib.load(pickle_in)#step 2
 cv_model = open('vectorizer.pkl', 'rb')
 cv = joblib.load(cv_model)
@@ -10,6 +10,7 @@ cv = joblib.load(cv_model)
 def predict(data):
     #data=[int_features]
     vect =cv.transform(data)
+    #vect=vect.toarray()
 
     predictions = classifier.predict(vect)[0]
     return predictions
@@ -24,7 +25,7 @@ def main ():
     "How would you like to predict?",
     ("Online", "Batch"))
 
-    st.sidebar.info('This app is created to predict website spam')
+    st.sidebar.info('This app is created to predict spam')
 
 
     st.sidebar.image(image_spam)
@@ -33,11 +34,11 @@ def main ():
 
 
 
-    st.title("Website Prediction spam App")
+    st.title("Prediction of spam App")
 
     if add_selectbox == 'Online':
 
-        url = st.text_input('URL(Please input a url  E.g linkdin.com)')
+        url = st.text_input('Words(Please input  words)')
 
     output=""
     data= [url]
@@ -45,7 +46,7 @@ def main ():
         output = predict(data)
 
 
-    st.success('The output is {}'.format(output))
+    st.success('If output is 1,it is Ham or otherwise output is zero that show spam = {}'.format(output))
 
     if add_selectbox == 'Batch':
 
