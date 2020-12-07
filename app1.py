@@ -44,9 +44,12 @@ def main ():
     data= [url]
     if st.button("Predict"):
         output = predict(data)
+    if output==1:
+        output='ham'
+    else:
+        output='spam'
 
-
-    st.success('If output is 1,it is Ham or otherwise output is zero that show spam = {}'.format(output))
+    st.success(' output is {}'.format(output))
 
     if add_selectbox == 'Batch':
 
