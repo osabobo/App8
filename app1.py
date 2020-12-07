@@ -64,8 +64,8 @@ def main ():
             data = pd.read_csv(file_upload,  encoding = 'latin-1')
 
 
-            predictions = predict1(data)
-            #predition.replace({1:'Nonspam',0:'spam'},inplace=True)
+            predictions = predict(data)
+            
             st.write(predictions)
 if __name__ == '__main__':
     main()
