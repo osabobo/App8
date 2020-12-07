@@ -12,7 +12,7 @@ def predict(data):
     vect =cv.transform(data)
 
 
-    predictions = classifier.predict(vect)
+    predictions = classifier.predict(vect)[0]
     return predictions
 def predict1(data1):
 
@@ -32,7 +32,7 @@ def main ():
     "How would you like to predict?",
     ("Online", "Batch"))
 
-    st.sidebar.info('This app is created to predict spam')
+    st.sidebar.info('This app is created to predict spam and nonspam')
 
 
     st.sidebar.image(image_spam)
@@ -41,10 +41,10 @@ def main ():
 
 
 
-    st.title("Prediction of spam App")
+    st.title("Spam SMS Detection")
 
     if add_selectbox == 'Online':
-        url = st.text_input('Words(Please input  words)')
+        url = st.text_input('Input the SMS')
 
         output=""
         data=[url]
