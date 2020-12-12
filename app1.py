@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import joblib
+from io import StringIO
 import streamlit as st
 pickle_in = open("grid2.pkl","rb")
 classifier=joblib.load(pickle_in)#step 2
@@ -32,7 +33,7 @@ def main ():
     "How would you like to predict?",
     ("Online", "Batch"))
 
-    st.sidebar.info('This app is created to predict spam and nonspam')
+    st.sidebar.info('This app checks if an SMS is a spam or not')
 
 
     st.sidebar.image(image_spam)
@@ -53,25 +54,28 @@ def main ():
         if st.button("Predict"):
             output = predict(data)
         if output==1:
-            output='Nonspam'
+            output='This SMS is not a spam'
         if output==0:
-            output='spam'
+            output='This SMS is a spam'
 
 
 
 
 
-        st.success(' output is {}'.format(output))
+        st.success(output)
 
     if add_selectbox == 'Batch':
-        file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"])
+        file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"],encoding =None, key = 'a')
+
+
+
         st.title('Make sure the csv File is in the same format  as spam.csv before uploading to avoid Error')
         if file_upload is not None:
-            data1 = pd.read_csv(file_upload,  encoding = 'latin-1')
-
-
+            data1 = pd.read_csv(file_upload,encoding = 'latin-1')
             predictions = predict1(data1)
-
             st.write(predictions)
+
+
+
 if __name__ == '__main__':
     main()
