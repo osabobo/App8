@@ -65,8 +65,8 @@ def main ():
         st.success(output)
 
     if add_selectbox == 'Batch':
-        st.set_option('deprecation.showfileUploaderEncoding', False)
-        uploaded_file = st.file_uploader("Choose a CSV file", type="csv", encoding="utf-8")
+        #st.set_option('deprecation.showfileUploaderEncoding', False)
+        file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"],encoding =None, key = 'a')
 
 
 
