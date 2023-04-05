@@ -54,7 +54,7 @@ def main():
 
     if add_selectbox == 'Batch':
         st.title('Make sure the csv File is in the same format  as spam.csv before uploading to avoid Error')
-       # uploaded_file = st.file_uploader("Choose a CSV file", type="csv", encoding="utf-8")
+        uploaded_file = st.file_uploader("Choose a CSV file", type="csv", encoding="utf-8")
         if uploaded_file is not None:
             data1 = pd.read_csv(uploaded_file, encoding='latin-1')
             predictions = predict1(data1)
